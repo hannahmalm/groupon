@@ -1,6 +1,6 @@
 # Groupon
 
-Welcome to your Groupon finder! This CLI app will help you find groupon experiences near you for a fraction of the cost of normal price!
+Welcome to your Groupon finder! This CLI app will help you find groupon experiences near you for a fraction of the cost of normal price! Run "./bin/groupon" to get started. 
 
 ## Installation
 
