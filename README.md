@@ -3,8 +3,8 @@
 Welcome to your Groupon finder! This CLI app will help you find groupon experiences near you for a fraction of the cost of normal price! Run "./bin/groupon" to get started. 
 
 ## Installation
+Please run 'bundle install' to install all necessary gems
 
-Add this line to your application's Gemfile:
 
 ```ruby
 gem 'groupon'
@@ -19,8 +19,7 @@ Or install it yourself as:
     $ gem install groupon
 
 ## Usage
-
-TODO: Write usage instructions here
+To start the application, type './bin/groupon' in your terminal
 
 ## Development
 
