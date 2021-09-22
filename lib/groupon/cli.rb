@@ -14,14 +14,16 @@ class Groupon::CLI
     end 
 #---------------------------------------------------------------------------------
     def get_offers
-        @offers = ["Offer 1", "Offer 2", "Offer 3"]   
+        @offers = Groupon::Offer.all 
         #This is an instance varialbe - you will be able to use it in an instance
+        #You would want a Class of offers rather than an array of Others
+        #Module is called Groupon
     end 
 #---------------------------------------------------------------------------------
     def list_offers #DONE - This will only list out the offer TITLES
         puts "Choose a offer you would like more details about"
         @offers.each.with_index(1) {|index,offer| 
-            puts "#{offer} - #{index}"
+            puts "#{offer.title} - #{index}"
         }
         #list the offer TITLES
         #use each with index to iterate over and add an index number
@@ -36,9 +38,9 @@ class Groupon::CLI
         list_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
     end 
 #---------------------------------------------------------------------------------
-def valid_input(input, data)
-    input.to_i <= data.length && input.to_i > 0
-end 
+    def valid_input(input, data)
+        input.to_i <= data.length && input.to_i > 0
+    end 
 
 #---------------------------------------------------------------------------------
     def list_offer_details(chosen_offer) #Logic Done
