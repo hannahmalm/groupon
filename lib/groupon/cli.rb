@@ -1,6 +1,6 @@
 class Groupon::CLI 
     #Use this namespacing because a user might have another file called CLI so this prevents confusion
-     #call the cli file from bin/chicago using Groupon::CLI.new.call
+    #call the cli file from bin/chicago using Groupon::CLI.new.call
     #Use namespacing on this Module because the CLI might be named chicago elsewhere
     #.new is used to trigger the initialize method
     #if you call self in a class method it will return the class - self in the intialize method is an instance of the class
@@ -12,62 +12,52 @@ class Groupon::CLI
         get_user_offer_input
         new_offer
     end 
-
+#---------------------------------------------------------------------------------
     def get_offers
         @offers = ["Offer 1", "Offer 2", "Offer 3"]   
+        #This is an instance varialbe - you will be able to use it in an instance
     end 
-
-    def list_offers #DONE - This will only list out the offer NAMES
+#---------------------------------------------------------------------------------
+    def list_offers #DONE - This will only list out the offer TITLES
         puts "Choose a offer you would like more details about"
         @offers.each.with_index(1) {|index,offer| 
             puts "#{offer} - #{index}"
         }
         #list the offer TITLES
         #use each with index to iterate over and add an index number
-        #the index starts with 0 so add 1 to print out the index starting at 1
-        
+        #the index starts with 0 so add 1 to print out the index starting at 1  
     end 
-
+#---------------------------------------------------------------------------------
      def get_user_offer_input #DONE
         print "Please choose a number associated with an offer you would like to more information about: 
         
         "
-        input = gets.to_i
-            if(input >= 1 && input <=100) 
-             list_offer_details
-            else
-                #after entering the valid number, you need to list the offer details
-             puts "Please enter a valid number"
-             input = gets.to_i
-             list_offer_details
-            end 
+        chosen_offer = gets.strip.to_i
+        list_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
     end 
-    
-    
+#---------------------------------------------------------------------------------
+def valid_input(input, data)
+    input.to_i <= data.length && input.to_i > 0
+end 
 
-        
-    def list_offer_details #Logic Done
-        puts "Offer details for offer"
-        #@activities = ["Shopping at Maceys", "Running Club", "Justin Bieber concert"]
-       # Chicago::Activity.all.each.with_index
-        # @activities.each.with_index(1) {|index, activity|
-        #     puts "#{activity} - #{index}"
-        # }
-   
-        #puts "Activty Name: SCRAPER DATA"
-    #     puts "Activity Description: SCRAPER DATA"
-    #     puts "Activity URL: SCRAPER DATA"
-    #     new_activty
-    
+#---------------------------------------------------------------------------------
+    def list_offer_details(chosen_offer) #Logic Done
+        offer = @offers[chosen_offer- 1]
+        puts "Offer details for #{offer}"
+        # Groupon::Details.all each do |offer|
+        #     puts offer.title 
+        #     puts offer.location 
+        #     puts offer.price 
+        #     puts offer.description
     end 
-
+#---------------------------------------------------------------------------------
     def offer_loop 
         get_offers
         list_offers
         get_user_offer_input
         new_offer
     end 
-
+#---------------------------------------------------------------------------------
     def new_offer 
         puts "Do you want to see another offer? Please enter Yes or No"
         input = gets.chomp.to_s 
@@ -84,9 +74,8 @@ class Groupon::CLI
                 goodbye
             end
         end
-
     end 
-
+#---------------------------------------------------------------------------------
     def goodbye 
         puts "Thank You for using the Groupon finder!"
     end   
