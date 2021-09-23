@@ -6,7 +6,9 @@ require_relative "groupon/scraper"
 
 
 require 'pry'
-requipre 'nokogiri'
+require 'nokogiri'
+require 'open-uri'
+require 'byebug'
 
 module Groupon
   class Error < StandardError; end

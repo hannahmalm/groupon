@@ -14,6 +14,8 @@ class Groupon::Offer
 
     def self.all 
         #use self because this is a class method 
+        #scrape the offers if the array is empty
+        Groupon::Scraper.scrape_offers if @@all.empty?
         @@all
     end 
 

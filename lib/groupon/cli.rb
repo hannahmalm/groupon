@@ -14,6 +14,7 @@ class Groupon::CLI
     end 
 #---------------------------------------------------------------------------------
     def get_offers
+        
         @offers = Groupon::Offer.all 
         #This is an instance varialbe - you will be able to use it in an instance
         #You would want a Class of offers rather than an array of Others
