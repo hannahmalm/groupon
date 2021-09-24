@@ -23,30 +23,31 @@ class Groupon::CLI
 #---------------------------------------------------------------------------------
     def list_offers #DONE - This will only list out the offer TITLES
         puts "Choose a offer you would like more details about"
-        @offers.each.with_index(1) {|index,offer| 
-            puts "#{offer.title} - #{index}"
-        }
+        @offers.each.with_index(1) do |offer, index| 
+            puts "#{index} - #{offer.title}"
+        end
         #list the offer TITLES
         #use each with index to iterate over and add an index number
-        #the index starts with 0 so add 1 to print out the index starting at 1  
+        #the index starts with 0 so add 1 to print out the index starting at 1 
+        #Notice the order of iteration and puts - it needs to be in this order or it wont work 
     end 
 #---------------------------------------------------------------------------------
      def get_user_offer_input #DONE
-        print "Please choose a number associated with an offer you would like to more information about: 
-        
+        print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
         chosen_offer = gets.strip.to_i
         list_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
     end 
 #---------------------------------------------------------------------------------
-    def valid_input(input, data)
+    def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
         input.to_i <= data.length && input.to_i > 0
     end 
 
 #---------------------------------------------------------------------------------
     def list_offer_details(chosen_offer) #Logic Done
         offer = @offers[chosen_offer- 1]
-        puts "Offer details for #{offer}"
+        details = offer.details
+        puts "Offer details for: #{offer.title}"
         # Groupon::Details.all each do |offer|
         #     puts offer.title 
         #     puts offer.location 

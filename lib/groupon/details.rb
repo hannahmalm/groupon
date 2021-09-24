@@ -1,10 +1,12 @@
-class Groupon::Offer 
+class Groupon::Details
 
     #start with creating class variable 
     @@all = []
 
     #List out the attributes that offers have
-    attr_accessor :title, :details
+    #An offer has one title, locaation, price, description
+    #Each detail belongs to an event
+    attr_accessor :title, :location, :price, :description
 
     #To initialize, you want to intialzie an instance
     #create an empty array that holds all of the details within the offer
@@ -14,13 +16,7 @@ class Groupon::Offer
         save 
     end 
 
-    def self.all 
-        #self.all is the same as calling Offer.all
-        #use self because this is a class method 
-        #scrape the offers if the array is empty
-        Groupon::Scraper.scrape_offers if @@all.empty?
-        @@all
-    end 
+    
 
     def details 
         #check to see if there are any details already, if there arent, scrape it

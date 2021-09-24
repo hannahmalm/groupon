@@ -3,6 +3,7 @@ require_relative "groupon/version"
 require_relative "groupon/cli"
 require_relative "groupon/offer"
 require_relative "groupon/scraper"
+require_relative "groupon/details"
 
 
 require 'pry'
@@ -15,4 +16,4 @@ module Groupon
   # Your code goes here...
 end
 
-#This is the envrionment file 
+#This is the envrionment file - this is where you make the connections and requirements
