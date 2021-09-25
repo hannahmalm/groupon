@@ -3,6 +3,7 @@ require_relative "groupon/version"
 require_relative "groupon/cli"
 require_relative "groupon/offer"
 require_relative "groupon/scraper"
+require_relative "groupon/detail"
 
 
 

@@ -14,7 +14,6 @@ class Groupon::CLI
     end 
 #---------------------------------------------------------------------------------
     def get_offers
-        
         @offers = Groupon::Offer.all 
         #This is an instance varialbe - you will be able to use it in an instance
         #You would want a Class of offers rather than an array of Others
@@ -43,21 +42,34 @@ class Groupon::CLI
         input.to_i <= data.length && input.to_i > 0
     end 
 #--------------------------------------------------------------------------------
-def get_location
-    @location = Groupon::Offer.location
-    #This is an instance varialbe - you will be able to use it in an instance
-    #You would want a Class of offers rather than an array of Others
-    #Module is called Groupon
-end 
-#--------------------------------------------------------------------------------
-    def list_offer_details(chosen_offer) #Logic Done
-        offer = @offers[chosen_offer- 1]
-        puts "Offer details for: #{offer.title}"
-        puts "Offer Location: #{offer.location}"
-        puts "Offer Price: #{offer.price}"
-        puts "Offer Description: #{offer.description}"
-    end 
-#---------------------------------------------------------------------------------
+# def get_details
+#     @details = Groupon::Detail.all 
+# end 
+
+def list_details(chosen_offer) #DONE - This will only list out the offer TITLES
+    detail = @offers[chosen_offer - 1]
+    #detail.print_location
+    puts "Location:"
+    detail.each.with_index(1) do |detail, index| 
+        puts "#{index} - #{detail.location}"
+    end
+end
+
+# def list_offer_details(chosen_offer)
+#     details = @offers[chosen_offer-1]
+#     Groupon::Scraper.new.print_details
+# end 
+
+
+#     def list_offer_details(chosen_offer) #Logic Done
+#         offer = @offers[chosen_offer- 1]
+#         offer.get_details
+#         puts "Offer details for: #{offer.title}"
+#         puts "Offer Location: #{offer.location}"
+#         puts "Offer Price: #{offer.price}"
+#         puts "Offer Description: #{offer.description}"
+#     end 
+# #---------------------------------------------------------------------------------
     def offer_loop 
         get_offers
         list_offers
