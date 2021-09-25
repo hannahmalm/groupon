@@ -42,17 +42,13 @@ class Groupon::CLI
     def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
         input.to_i <= data.length && input.to_i > 0
     end 
-
-#---------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------
     def list_offer_details(chosen_offer) #Logic Done
         offer = @offers[chosen_offer- 1]
-        details = offer.details
         puts "Offer details for: #{offer.title}"
-        # Groupon::Details.all each do |offer|
-        #     puts offer.title 
-        #     puts offer.location 
-        #     puts offer.price 
-        #     puts offer.description
+        puts "Offer Location: #{offer.location}"
+        puts "Offer Price: #{offer.price}"
+        puts "Offer Description: #{offer.description}"
     end 
 #---------------------------------------------------------------------------------
     def offer_loop 

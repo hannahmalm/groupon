@@ -4,13 +4,15 @@ class Groupon::Offer
     @@all = []
 
     #List out the attributes that offers have
-    attr_accessor :title, :details
+    attr_accessor :title, :location, :price, :description
 
     #To initialize, you want to intialzie an instance
     #create an empty array that holds all of the details within the offer
     def initialize(title)
         @title = title
-        @details = []
+        @location = location
+        @price = price
+        @description = description
         save 
     end 
 
@@ -22,11 +24,10 @@ class Groupon::Offer
         @@all
     end 
 
-    def details 
+    def get_details 
         #check to see if there are any details already, if there arent, scrape it
         #pass in self to only scrape the details of THIS instance
-        Groupon::Scraper.scrape_details(self) if @details.empty?
-        @details
+        Groupon::Scraper.scrape_details(self) 
     end 
 
     #save the newly created objects into the array
