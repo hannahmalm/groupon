@@ -43,6 +43,13 @@ class Groupon::CLI
         input.to_i <= data.length && input.to_i > 0
     end 
 #--------------------------------------------------------------------------------
+def get_location
+    @location = Groupon::Offer.location
+    #This is an instance varialbe - you will be able to use it in an instance
+    #You would want a Class of offers rather than an array of Others
+    #Module is called Groupon
+end 
+#--------------------------------------------------------------------------------
     def list_offer_details(chosen_offer) #Logic Done
         offer = @offers[chosen_offer- 1]
         puts "Offer details for: #{offer.title}"
