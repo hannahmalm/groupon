@@ -17,9 +17,9 @@ class Groupon::Detail
     #     @offer.details << self unless @offer.details.include?(self)
     # end 
 
-    def get_offer_details 
-        Groupon::Scraper.make_location(self) 
-    end 
+    # def get_offer_details 
+    #     Groupon::Scraper.make_location(self) 
+    # end 
 
     def save 
         @@all << self 

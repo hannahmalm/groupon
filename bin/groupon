@@ -2,4 +2,5 @@
 
 require_relative '../lib/groupon'
 
-Groupon::CLI.new.call
+#create a new instance to call the start method
+Groupon::CLI.new.start

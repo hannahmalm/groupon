@@ -5,7 +5,7 @@ class Groupon::CLI
     #.new is used to trigger the initialize method
     #if you call self in a class method it will return the class - self in the intialize method is an instance of the class
 
-    def call 
+    def start
         puts "Welcome to the Groupon finder!"
         get_offers
         list_offers
@@ -46,29 +46,30 @@ class Groupon::CLI
 #     @details = Groupon::Detail.all 
 # end 
 
-def list_details(chosen_offer) #DONE - This will only list out the offer TITLES
-    detail = @offers[chosen_offer - 1]
-    #detail.print_location
-    puts "Location:"
-    detail.each.with_index(1) do |detail, index| 
-        puts "#{index} - #{detail.location}"
-    end
-end
+# def list_offer_details(chosen_offer) #DONE - This will only list out the offer TITLES
+#     detail = @offers[chosen_offer - 1]
+#     detail.get_details
+#     puts "Location:"
+#     detail.each.with_index(1) do |detail, index| 
+#         puts "#{index} - #{detail.location}"
+#     end
+# end
 
 # def list_offer_details(chosen_offer)
 #     details = @offers[chosen_offer-1]
-#     Groupon::Scraper.new.print_details
+#     Groupon::Scraper.print_details
+#     puts :location
 # end 
 
 
-#     def list_offer_details(chosen_offer) #Logic Done
-#         offer = @offers[chosen_offer- 1]
-#         offer.get_details
-#         puts "Offer details for: #{offer.title}"
-#         puts "Offer Location: #{offer.location}"
-#         puts "Offer Price: #{offer.price}"
-#         puts "Offer Description: #{offer.description}"
-#     end 
+    def list_offer_details(chosen_offer) #Logic Done
+        offer = @offers[chosen_offer- 1]
+        #offer.get_details
+        puts "Offer details for: #{offer.title}"
+        puts "Offer Location: #{offer.location}"
+        puts "Offer Price: #{offer.price}"
+        puts "Offer Description: #{offer.description}"
+    end 
 # #---------------------------------------------------------------------------------
     def offer_loop 
         get_offers

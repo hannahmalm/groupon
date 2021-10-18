@@ -19,9 +19,18 @@ class Groupon::Offer
         @@all
     end 
 
-    def get_details 
-        Groupon::Scraper.scrape_details(self) 
+    def self.location 
+        doc = Nokogiri::HTML(open("https://www.groupon.com/local/things-to-do"))
+        offers = doc.css(".grpn-dc-loci").first
+        offers.each do |t|
+        location = t.text 
+        #Groupon::Detail.new(location)
+        end 
     end 
+
+    # def get_details 
+    #     Groupon::Scraper.create_details_hash (self) 
+    # end 
 
     #save the newly created objects into the array
     def save 
