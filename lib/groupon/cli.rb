@@ -54,27 +54,9 @@ class Groupon::CLI
         end 
     end 
 #--------------------------------------------------------------------------------
-def display_offer_details(offer)
+    def display_offer_details(offer)
     Groupon::Scraper.scrape_details(offer)
-end 
-# def get_details
-#     @details = Groupon::Detail.all 
-# end 
-
-# def list_offer_details(chosen_offer) #DONE - This will only list out the offer TITLES
-#     detail = @offers[chosen_offer - 1]
-#     detail.get_details
-#     puts "Location:"
-#     detail.each.with_index(1) do |detail, index| 
-#         puts "#{index} - #{detail.location}"
-#     end
-# end
-
-# def list_offer_details(chosen_offer)
-#     details = @offers[chosen_offer-1]
-#     Groupon::Scraper.print_details
-#     puts :location
-# end 
+    end 
 
 
     def list_offer_details(chosen_offer) #Logic Done
