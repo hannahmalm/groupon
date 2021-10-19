@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+#../ gets this up to the bin file.
 require_relative '../lib/groupon'
 
 #create a new instance to call the start method

@@ -38,10 +38,25 @@ class Groupon::CLI
         list_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
     end 
 #---------------------------------------------------------------------------------
-    def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
-        input.to_i <= data.length && input.to_i > 0
+    # def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
+    #     input.to_i <= data.length && input.to_i > 0
+    # end 
+
+    def valid_input
+        input = gets.strip.to_i 
+        max = Groupon::Offer.all.length 
+        if input.between?(1,max)
+            #This is the index - 1 (if user types in 4, its really 3)
+            chosen_offer = Groupon::Offer.all[input-1]
+            display_details(offer)
+        else 
+            puts "Please enter a valid input"
+        end 
     end 
 #--------------------------------------------------------------------------------
+def display_offer_details(offer)
+    Groupon::Scraper.scrape_details(offer)
+end 
 # def get_details
 #     @details = Groupon::Detail.all 
 # end 
@@ -95,6 +110,8 @@ class Groupon::CLI
             end
         end
     end 
+
+  #rerender this as a case statement 
 #---------------------------------------------------------------------------------
     def goodbye 
         puts "Thank You for using the Groupon finder!"

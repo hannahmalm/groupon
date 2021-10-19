@@ -10,8 +10,7 @@ class Groupon::Offer
     #create an empty array that holds all of the details within the offer
     def initialize(title)
         @title = title
-        #@details = []
-        save 
+        @@all << self #save or remember the object
     end 
 
     def self.all 
