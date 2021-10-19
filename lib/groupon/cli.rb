@@ -35,38 +35,45 @@ class Groupon::CLI
         print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
         chosen_offer = gets.strip.to_i
-        list_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
+        display_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
     end 
 #---------------------------------------------------------------------------------
-    # def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
-    #     input.to_i <= data.length && input.to_i > 0
-    # end 
-
-    def valid_input
-        input = gets.strip.to_i 
-        max = Groupon::Offer.all.length 
-        if input.between?(1,max)
-            #This is the index - 1 (if user types in 4, its really 3)
-            chosen_offer = Groupon::Offer.all[input-1]
-            display_details(offer)
-        else 
-            puts "Please enter a valid input"
-        end 
+    def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
+        input.to_i <= data.length && input.to_i > 0
     end 
+
+    # def valid_input
+    #     input = gets.strip.to_i 
+    #     max = Groupon::Offer.all.length 
+    #     if input.between?(1,max)
+    #         #This is the index - 1 (if user types in 4, its really 3)
+    #         chosen_offer = Groupon::Offer.all[input-1]
+    #         display_details(offer)
+    #     else 
+    #         puts "Please enter a valid input"
+    #     end 
+    # end 
 #--------------------------------------------------------------------------------
     def display_offer_details(offer)
-    Groupon::Scraper.scrape_details(offer)
+        Groupon::Scraper.scrape_details(offer)
+        offer.details.each.with_index(1) do |detail, index|
+            #print out info about each offer 
+        puts "Offer Detils for: #{detail.title}"
+        puts "Offer Location: #{detail.location}"
+        puts "Offer Price: #{detail.price}"
+        puts "Offer Description: #{detail.description}"
     end 
+end 
 
 
-    def list_offer_details(chosen_offer) #Logic Done
-        offer = @offers[chosen_offer- 1]
-        #offer.get_details
-        puts "Offer details for: #{offer.title}"
-        puts "Offer Location: #{offer.location}"
-        puts "Offer Price: #{offer.price}"
-        puts "Offer Description: #{offer.description}"
-    end 
+    # def list_offer_details(chosen_offer) #Logic Done
+    #     offer = @offers[chosen_offer- 1]
+    #     #offer.get_details
+    #     puts "Offer details for: #{offer.title}"
+    #     puts "Offer Location: #{offer.location}"
+    #     puts "Offer Price: #{offer.price}"
+    #     puts "Offer Description: #{offer.description}"
+    # end 
 # #---------------------------------------------------------------------------------
     def offer_loop 
         get_offers
