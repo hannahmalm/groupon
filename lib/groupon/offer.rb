@@ -27,10 +27,6 @@ class Groupon::Offer
         end 
     end 
 
-    # def get_details 
-    #     Groupon::Scraper.create_details_hash (self) 
-    # end 
-
     #save the newly created objects into the array
     def save 
         @@all << self
