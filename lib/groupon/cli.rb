@@ -10,7 +10,8 @@ class Groupon::CLI
         get_offers
         list_offers
         get_user_offer_input
-        new_offer
+        #display_offer_details
+       # new_offer
     end 
 #---------------------------------------------------------------------------------
     def get_offers
@@ -34,13 +35,21 @@ class Groupon::CLI
      def get_user_offer_input #DONE
         print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
-        chosen_offer = gets.strip.to_i
-        display_offer_details(chosen_offer) if valid_input(chosen_offer, @offers)
+        input = gets.strip.to_i
+        offer = Groupon::Offer.all[input-1]
+        display_offer_details(offer)
+        # max_value = Groupon::Offer.all.length 
+        # if input.between?(1, max_value)
+        #     offer = Groupon::Offer.all[input-1]
+        #     display_offer_details(offer)
+        # else 
+        #     puts "Please enter a valid input"
+        # end 
     end 
 #---------------------------------------------------------------------------------
-    def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
-        input.to_i <= data.length && input.to_i > 0
-    end 
+    # def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
+    #     input.to_i <= data.length && input.to_i > 0
+    # end 
 
     # def valid_input
     #     input = gets.strip.to_i 
@@ -53,12 +62,21 @@ class Groupon::CLI
     #         puts "Please enter a valid input"
     #     end 
     # end 
+
+    # def get_details
+    #     @details = Groupon::Detail.all 
+    #     #This is an instance varialbe - you will be able to use it in an instance
+    #     #You would want a Class of offers rather than an array of Others
+    #     #Module is called Groupon
+    # end 
 #--------------------------------------------------------------------------------
     def display_offer_details(offer)
-        Groupon::Scraper.scrape_details(offer)
+        
+        Groupon::Scraper.scrape_items(offer)
+      
         offer.details.each.with_index(1) do |detail, index|
             #print out info about each offer 
-        puts "Offer Detils for: #{detail.title}"
+        puts "Offer Details for: #{detail.title}"
         puts "Offer Location: #{detail.location}"
         puts "Offer Price: #{detail.price}"
         puts "Offer Description: #{detail.description}"
@@ -82,23 +100,6 @@ end
         new_offer
     end 
 #---------------------------------------------------------------------------------
-    def new_offer 
-        puts "Do you want to see another offer? Please enter Yes or No"
-        input = gets.chomp.to_s 
-        if input == "Y" || input == "Yes" || input == "y" || input == "yes"
-            offer_loop
-        elsif input == "N" || input == "No" || input == "n" || input == "no"
-            goodbye 
-        else 
-           puts "Please enter Yes or No"
-            input_new = gets.chomp.to_s 
-            if input_new == "Yes"
-                offer_loop
-            else 
-                goodbye
-            end
-        end
-    end 
 
   #rerender this as a case statement 
 #---------------------------------------------------------------------------------

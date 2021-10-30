@@ -17,19 +17,25 @@ class Groupon::Scraper
     end 
 
 #-----------------------------------------------------------------------------------
-def self.scrape_details(offer)
+def self.scrape_items(offer)
     doc = Nokogiri::HTML(open("https://www.groupon.com/local/things-to-do"))
+    #binding.byebug
+    
+    #items = doc.css(".wh-template").text
 
-    offers = doc.css(".grpn-dc-title")
+    doc.each do |offer|
+        #create an instance
+        detail = Groupon::Detail.new(detail) #has_many relationship
 
-    offers.each do |offer|
-    detail = Groupon::Detail.new #has_many relationship
+        #assign object attribues
+        detail.title = offer.css(".grpn-dc-title").text
+        detail.location = offer.css(".grpn-dc-loci").text
+        detail.price = offer.css(".wh-dc-price-discount").text
+        detail.description = offer.css(".grpn-option-title").text
 
-    #title = doc.css(".grpn-dc-title")
-    detail.location = detail.css(".grpn-dc-loci").text
-    detail.price = detail.css(".wh-dc-price-discount").text
-    detail.description = detail.css(".grpn-option-title").text
-
+        #Associate details with the offer
+        #offer.add_detail(detail)
+        offer.details << detail
     end
 end 
 

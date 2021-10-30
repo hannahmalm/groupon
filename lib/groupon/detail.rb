@@ -26,8 +26,14 @@ class Groupon::Detail
     # end 
 
 
-    attr_accessor :title, :location, :price, :description
+    attr_accessor :title, :location, :price, :description, :offer
     
-    @@all =[]
+    @@all =[] #empty array to contain all of the details 
+
+    def self.all 
+        Groupon::Scraper.scrape_details(offer) if @@all.empty?
+        @@all
+    end 
+
 
 end 
