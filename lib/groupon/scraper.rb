@@ -26,6 +26,7 @@ def self.scrape_items(offer)
     doc.each do |offer|
         #create an instance
         detail = Groupon::Detail.new(detail) #has_many relationship
+         
 
         #assign object attribues
         detail.title = offer.css(".grpn-dc-title").text
@@ -33,9 +34,9 @@ def self.scrape_items(offer)
         detail.price = offer.css(".wh-dc-price-discount").text
         detail.description = offer.css(".grpn-option-title").text
 
-        #Associate details with the offer
-        #offer.add_detail(detail)
-        offer.details << detail
+       #Associate details with the offer
+       offer.add_detail(detail)
+        #offer.details << detail
     end
 end 
 

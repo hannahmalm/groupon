@@ -73,13 +73,14 @@ class Groupon::CLI
     def display_offer_details(offer)
         
         Groupon::Scraper.scrape_items(offer)
+        binding.byebug
       
-        offer.details.each.with_index(1) do |detail, index|
-            #print out info about each offer 
-        puts "Offer Details for: #{detail.title}"
-        puts "Offer Location: #{detail.location}"
-        puts "Offer Price: #{detail.price}"
-        puts "Offer Description: #{detail.description}"
+        # offer.details.each.with_index(1) do |detail, index|
+        #     #print out info about each offer 
+        # puts "Offer Details for: #{detail.title}"
+        # puts "Offer Location: #{detail.location}"
+        # puts "Offer Price: #{detail.price}"
+        # puts "Offer Description: #{detail.description}"
     end 
 end 
 
@@ -100,7 +101,23 @@ end
         new_offer
     end 
 #---------------------------------------------------------------------------------
-
+ def new_offer #DONE
+        puts "Do you want to see anotheroffer?"
+        input = gets.chomp.to_s 
+        if input == "Y" || input == "Yes" || input == "y" || input == "yes"
+            offer_loop
+        elsif input == "N" || input == "No" || input == "n" || input == "no"
+            goodbye 
+        else 
+           puts "Please enter Yes or No"
+            input_new = gets.chomp.to_s 
+            if input_new == "Yes"
+                offer_loop
+            else 
+                goodbye
+            end
+        end
+    end 
   #rerender this as a case statement 
 #---------------------------------------------------------------------------------
     def goodbye 

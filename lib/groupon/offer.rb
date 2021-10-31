@@ -27,7 +27,7 @@ class Groupon::Offer
     # end 
 
     def add_detail(detail)
-        self.details << detail 
+        self.details << detail
         detail.offer = self 
     end 
 

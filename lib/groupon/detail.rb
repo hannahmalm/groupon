@@ -31,7 +31,8 @@ class Groupon::Detail
     @@all =[] #empty array to contain all of the details 
 
     def self.all 
-        Groupon::Scraper.scrape_details(offer) if @@all.empty?
+        #Groupon::Scraper.scrape_details(offer) if @@all.empty?
+        Groupon::Scraper.scrape_details(offer) 
         @@all
     end 
 
