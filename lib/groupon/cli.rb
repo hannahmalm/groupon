@@ -56,19 +56,13 @@ class Groupon::CLI
   
 #--------------------------------------------------------------------------------
     def display_offer_detail(offer)
-        
-        Groupon::Scraper.scrape_detail(offer)
-        binding.byebug
-      
-        offer.detail.each.with_index(1) do |detail, index|
-        #details.each.with_index(1) do |detail, index|
-            #print out info about each offer 
-        puts "Offer Details for: #{detail.title}"
-        puts "Offer Location: #{detail.location}"
-        puts "Offer Price: #{detail.price}"
-        puts "Offer Description: #{detail.description}"
+        puts "Offer Details for: #{offer.title}"
+        puts "Offer Location: #{offer.location}"
+        puts "Offer Price: #{offer.price}"
+        puts "Offer Description: #{offer.description}"
+        get_user_additional_input(offer)
     end 
-end 
+
 
 
     # def list_offer_details(chosen_offer) #Logic Done
