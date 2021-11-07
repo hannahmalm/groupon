@@ -16,13 +16,6 @@ class Groupon::Scraper
              }
              offer = Groupon::Offer.new(attributes)
          end 
-
-        #as i iterate over the offers, it will print out the offer titles 
-        offers.each do |t|
-            title = t.text 
-            #ref = t.attr("id")
-            Groupon::Offer.new(title)
-        end 
     end 
 
 #-----------------------------------------------------------------------------------
