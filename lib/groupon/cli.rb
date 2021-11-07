@@ -76,7 +76,14 @@ class Groupon::CLI
             end 
         end 
     end 
-# #---------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------
+def get_review_info(offer)
+    Groupon::Scraper.scrape_details(offer)
+    offer.details.each do |review| #iterate through each offer review 
+        puts "#{review.name} says: #{review.text}.\n\n"
+    end 
+end 
+#---------------------------------------------------------------------------------
     def offer_loop 
         get_offers
         list_offers
