@@ -1,8 +1,8 @@
 class Groupon::Offer 
 
      #List out the attributes that offers have
-     attr_accessor :title
-     attr_reader :detail #has_many relationship is a reader so it is not overwritten
+     attr_accessor :title, :url, :location, :price, :rating
+     attr_reader :details #has_many relationship is a reader so it is not overwritten
     #start with creating class variable 
       @@all = []   
 
