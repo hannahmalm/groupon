@@ -63,7 +63,19 @@ class Groupon::CLI
         get_user_additional_input(offer)
     end 
 
-
+#-------------------------------------------------------------------------------------
+    def get_user_additional_input(offer)
+        puts "Would you like to see the reviews for this offer?"
+        input = "nil"
+        until input == "Yes" || input == "No"
+            input = gets.strip 
+            if input == "Yes"
+                get_review_info(offer)
+            else 
+                new_offer 
+            end 
+        end 
+    end 
 
     # def list_offer_details(chosen_offer) #Logic Done
     #     offer = @offers[chosen_offer- 1]
