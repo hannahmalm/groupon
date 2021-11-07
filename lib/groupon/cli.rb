@@ -21,8 +21,9 @@ class Groupon::CLI
         #Module is called Groupon
     end 
 #---------------------------------------------------------------------------------
-    def list_offers #DONE - This will only list out the offer TITLES
+    def list_offers 
         puts "Choose a offer you would like more details about"
+         #Could also write this as Groupon::Offer.all.each.with(index) and delete out get offers method
         @offers.each.with_index(1) do |offer, index| 
             puts "#{index} - #{offer.title}"
         end
@@ -35,15 +36,20 @@ class Groupon::CLI
      def get_user_offer_input #DONE
         print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
-        input = gets.strip.to_i
-        offer = Groupon::Offer.all[input-1]
-        display_offer_detail(offer)
+        if input = gets.strip.to_i.between?(1,31)
+            offer = Groupon::Offer.all[input-1]
+            display_offer_detail(offer)
+        else 
+            puts "Please enter a valid number"
+            get_user_offer_input
+        end 
         # max_value = Groupon::Offer.all.length 
         # if input.between?(1, max_value)
         #     offer = Groupon::Offer.all[input-1]
-        #     display_offer_details(offer)
+        #     display_offer_detail(offer)
         # else 
         #     puts "Please enter a valid input"
+            # get_user_offer_input
         # end 
     end 
 #---------------------------------------------------------------------------------
