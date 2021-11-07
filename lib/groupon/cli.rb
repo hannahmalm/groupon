@@ -53,28 +53,7 @@ class Groupon::CLI
         # end 
     end 
 #---------------------------------------------------------------------------------
-    # def valid_input(input, data) #FIX THIS TO ONLY OUTPUT THE NUMBERS
-    #     input.to_i <= data.length && input.to_i > 0
-    # end 
-
-    # def valid_input
-    #     input = gets.strip.to_i 
-    #     max = Groupon::Offer.all.length 
-    #     if input.between?(1,max)
-    #         #This is the index - 1 (if user types in 4, its really 3)
-    #         chosen_offer = Groupon::Offer.all[input-1]
-    #         display_details(offer)
-    #     else 
-    #         puts "Please enter a valid input"
-    #     end 
-    # end 
-
-    # def get_details
-    #     @details = Groupon::Detail.all 
-    #     #This is an instance varialbe - you will be able to use it in an instance
-    #     #You would want a Class of offers rather than an array of Others
-    #     #Module is called Groupon
-    # end 
+  
 #--------------------------------------------------------------------------------
     def display_offer_detail(offer)
         
