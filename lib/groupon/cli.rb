@@ -7,24 +7,18 @@ class Groupon::CLI
 
     def start
         puts "Welcome to the Groupon finder!"
-        get_offers
+        Groupon::Scraper.scrape_offers
         list_offers
         get_user_offer_input
         #display_offer_details
        # new_offer
     end 
 #---------------------------------------------------------------------------------
-    def get_offers
-        @offers = Groupon::Offer.all 
-        #This is an instance varialbe - you will be able to use it in an instance
-        #You would want a Class of offers rather than an array of Others
-        #Module is called Groupon
-    end 
-#---------------------------------------------------------------------------------
     def list_offers 
         puts "Choose a offer you would like more details about"
          #Could also write this as Groupon::Offer.all.each.with(index) and delete out get offers method
-        @offers.each.with_index(1) do |offer, index| 
+        #@offers.each.with_index(1) do |offer, index| 
+        Groupon::Offer.all.each.with_index(1) do |offer, index|
             puts "#{index} - #{offer.title}"
         end
         #list the offer TITLES
@@ -36,7 +30,9 @@ class Groupon::CLI
      def get_user_offer_input #DONE
         print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
-        if input = gets.strip.to_i.between?(1,31)
+
+        input = gets.strip.to_i
+        if input.to_i.between?(1,31)
             offer = Groupon::Offer.all[input-1]
             display_offer_detail(offer)
         else 
@@ -59,7 +55,7 @@ class Groupon::CLI
         puts "Offer Details for: #{offer.title}"
         puts "Offer Location: #{offer.location}"
         puts "Offer Price: #{offer.price}"
-        puts "Offer Description: #{offer.description}"
+        puts "Offer Rating: #{offer.rating}"
         get_user_additional_input(offer)
     end 
 
@@ -68,11 +64,12 @@ class Groupon::CLI
         puts "Would you like to see the reviews for this offer?"
         input = "nil"
         until input == "Yes" || input == "No"
+            puts "Please type Yes or No"
             input = gets.strip 
             if input == "Yes"
                 get_review_info(offer)
             else 
-                new_offer 
+               new_offer
             end 
         end 
     end 

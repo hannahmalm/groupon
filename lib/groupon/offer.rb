@@ -14,8 +14,12 @@ class Groupon::Offer
         @price = attributes[:price]
         @rating = attributes[:rating]
         @details = []
-        @@all << self #save or remember the object
+        self.save 
+       # @@all << self #save or remember the object
     end 
+
+    def save 
+        @@all << self 
 
     def self.all 
         @@all 

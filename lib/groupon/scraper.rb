@@ -19,16 +19,15 @@ class Groupon::Scraper
     end 
 
 #-----------------------------------------------------------------------------------
-    def self.scrape_details(offer_object)
-        offer_page = Nokogiri::HTML(open(offer_object.url))
+    def self.scrape_details(offer)
+        offer_page = Nokogiri::HTML(open(offer.url))
         reviews = offer_page.css('.tip-item')
-
             reviews.each do |r| 
                 review = Template::Detail.new  #instantiate a new review
-                review.offer = offer_object #associate that review with this offer
+                review.offer = offer #associate that review with this offer
                 review.text = r.css(".tip-text").text   #set any review attributes
                 review.name = r.css(".tips-reviewer-name").text   #set any review attributes
-                offer_object.add_detail(review)  #add this detail to offer.reviews
+                offer.add_detail(review)  #add this detail to offer.reviews
             end 
     end 
 
