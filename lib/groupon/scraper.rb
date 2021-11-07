@@ -24,7 +24,17 @@ def self.scrape_details(offer_object)
         reviews = offer_page.css('.tip-item')
 
         reviews.each do |r| 
+            #instantiate a new review
+            review = Template::Detail.new
+            #associate that review with this offer
+            review.offer = offer_object
+            #set any review attributes
+            review.text = r.css(".tip-text").text
+            review.name = r.css(".tips-reviewer-name").text
 
+            #add this detail to offer.reviews
+            offer_object.add_detail(review)
+end 
 end 
 
 
