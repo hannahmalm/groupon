@@ -32,7 +32,7 @@ class Groupon::Detail
 
     def self.all 
         #Groupon::Scraper.scrape_details(offer) if @@all.empty?
-        Groupon::Scraper.scrape_details(offer) 
+        Groupon::Scraper.scrape_detail(offer) 
         @@all
     end 
 

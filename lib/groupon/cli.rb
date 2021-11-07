@@ -37,7 +37,7 @@ class Groupon::CLI
         "
         input = gets.strip.to_i
         offer = Groupon::Offer.all[input-1]
-        display_offer_details(offer)
+        display_offer_detail(offer)
         # max_value = Groupon::Offer.all.length 
         # if input.between?(1, max_value)
         #     offer = Groupon::Offer.all[input-1]
@@ -70,17 +70,18 @@ class Groupon::CLI
     #     #Module is called Groupon
     # end 
 #--------------------------------------------------------------------------------
-    def display_offer_details(offer)
+    def display_offer_detail(offer)
         
-        Groupon::Scraper.scrape_items(offer)
+        Groupon::Scraper.scrape_detail(offer)
         binding.byebug
       
-        # offer.details.each.with_index(1) do |detail, index|
-        #     #print out info about each offer 
-        # puts "Offer Details for: #{detail.title}"
-        # puts "Offer Location: #{detail.location}"
-        # puts "Offer Price: #{detail.price}"
-        # puts "Offer Description: #{detail.description}"
+        offer.detail.each.with_index(1) do |detail, index|
+        #details.each.with_index(1) do |detail, index|
+            #print out info about each offer 
+        puts "Offer Details for: #{detail.title}"
+        puts "Offer Location: #{detail.location}"
+        puts "Offer Price: #{detail.price}"
+        puts "Offer Description: #{detail.description}"
     end 
 end 
 
@@ -102,7 +103,7 @@ end
     end 
 #---------------------------------------------------------------------------------
  def new_offer #DONE
-        puts "Do you want to see anotheroffer?"
+        puts "Do you want to see another offer?"
         input = gets.chomp.to_s 
         if input == "Y" || input == "Yes" || input == "y" || input == "yes"
             offer_loop

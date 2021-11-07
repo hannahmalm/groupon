@@ -2,7 +2,7 @@ class Groupon::Offer
 
      #List out the attributes that offers have
      attr_accessor :title
-     attr_reader :details #has_many relationship is a reader so it is not overwritten
+     attr_reader :detail #has_many relationship is a reader so it is not overwritten
     #start with creating class variable 
       @@all = []   
 
@@ -10,7 +10,7 @@ class Groupon::Offer
     #create an empty array that holds all of the details within the offer
     def initialize(title)
         @title = title
-        @details = []
+        @detail = []
         @@all << self #save or remember the object
     end 
 
@@ -26,8 +26,8 @@ class Groupon::Offer
     #     detail.offer = self 
     # end 
 
-    def add_detail(detail)
-        self.details << detail
+    def self.add_detail(detail)
+        self.detail << detail
         detail.offer = self 
     end 
 
