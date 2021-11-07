@@ -76,15 +76,6 @@ class Groupon::CLI
             end 
         end 
     end 
-
-    # def list_offer_details(chosen_offer) #Logic Done
-    #     offer = @offers[chosen_offer- 1]
-    #     #offer.get_details
-    #     puts "Offer details for: #{offer.title}"
-    #     puts "Offer Location: #{offer.location}"
-    #     puts "Offer Price: #{offer.price}"
-    #     puts "Offer Description: #{offer.description}"
-    # end 
 # #---------------------------------------------------------------------------------
     def offer_loop 
         get_offers
