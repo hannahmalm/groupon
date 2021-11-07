@@ -8,31 +8,21 @@ class Groupon::Offer
 
     #To initialize, you want to intialzie an instance
     #create an empty array that holds all of the details within the offer
-    def initialize(title)
-        @title = title
-        @detail = []
+    def initialize(attributes) #pass in attributes from the hash
+        @title = attributes[:title]
+        @location = attributes[:location]
+        @price = attributes[:price]
+        @rating = attributes[:rating]
+        @details = []
         @@all << self #save or remember the object
     end 
 
-    
-
     def self.all 
-        Groupon::Scraper.scrape_offers if @@all.empty?
-        @@all
+        @@all 
     end 
 
-    # def self.details(detail)
-    #     self.details << detail 
-    #     detail.offer = self 
-    # end 
-
-    def self.add_detail(detail)
-        self.detail << detail
-        detail.offer = self 
-    end 
-
-    #save the newly created objects into the array
-    def save 
-        @@all << self
+    def add_detail(d) #add details to the offer 
+        @details << d 
+        d.offer = self 
     end 
 end 
