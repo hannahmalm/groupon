@@ -32,22 +32,23 @@ class Groupon::CLI
         print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
 
-        input = gets.strip.to_i
-        if input.to_i.between?(1,31)
-            offer = Groupon::Offer.all[input-1]
-            display_offer_detail(offer)
-        else 
-            puts "Please enter a valid number"
-            get_user_offer_input
-        end 
-        # max_value = Groupon::Offer.all.length 
-        # if input.between?(1, max_value)
+        # input = gets.strip.to_i
+        # if input.to_i.between?(1,31)
         #     offer = Groupon::Offer.all[input-1]
         #     display_offer_detail(offer)
         # else 
-        #     puts "Please enter a valid input"
-            # get_user_offer_input
+        #     puts "Please enter a valid number"
+        #     get_user_offer_input
         # end 
+        input = gets.strip.to_i
+        max_value = Groupon::Offer.all.length 
+        if input.between?(1, max_value)
+            offer = Groupon::Offer.all[input-1]
+            display_offer_detail(offer)
+        else 
+            puts "Please enter a valid input"
+            get_user_offer_input
+        end 
     end 
 #---------------------------------------------------------------------------------
   
@@ -65,12 +66,13 @@ class Groupon::CLI
         puts "Would you like to see the reviews for this offer?"
         puts "Please type Yes or No"
         input = gets.strip 
-            if input == "Yes" || input == "Y"
+            if input == "Yes" || input == "Y" || input == "yes"
                 get_review_info(offer)
-            elsif input == "No" || input ==  "N"
+            elsif input == "No" || input ==  "N" || input == "no"
                 new_offer
             else
                 puts "Please type Yes or No"
+                get_user_additional_input(offer)
             end 
     end 
 #---------------------------------------------------------------------------------
