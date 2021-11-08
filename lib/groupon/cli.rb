@@ -61,37 +61,37 @@ class Groupon::CLI
             end 
     end 
 #---------------------------------------------------------------------------------
-def get_review_info(offer)
-    Groupon::Scraper.scrape_details(offer)
-    offer.details.each do |review| #iterate through each offer review 
-        puts "#{review.name} says: #{review.text}.\n\n"
-    end
-    new_offer
-end 
+    def get_review_info(offer)
+        Groupon::Scraper.scrape_details(offer)
+        offer.details.each do |review| #iterate through each offer review 
+            puts "#{review.name} says: #{review.text}.\n\n"
+        end
+        new_offer
+    end 
 #---------------------------------------------------------------------------------
     def offer_loop 
         list_offers
         get_user_offer_input
     end 
 #---------------------------------------------------------------------------------
- def new_offer #DONE
-        puts "Do you want to see another offer?"
-        input = gets.chomp.to_s 
-        if input == "Y" || input == "Yes" || input == "y" || input == "yes"
-            offer_loop
-        elsif input == "N" || input == "No" || input == "n" || input == "no"
-            goodbye 
-        else 
-           puts "Please enter Yes or No"
-            input_new = gets.chomp.to_s 
-            if input_new == "Yes"
+    def new_offer #DONE
+            puts "Do you want to see another offer?"
+            input = gets.chomp.to_s 
+            if input == "Y" || input == "Yes" || input == "y" || input == "yes"
                 offer_loop
+            elsif input == "N" || input == "No" || input == "n" || input == "no"
+                goodbye 
             else 
-                goodbye
+            puts "Please enter Yes or No"
+                input_new = gets.chomp.to_s 
+                if input_new == "Yes"
+                    offer_loop
+                else 
+                    goodbye
+                end
             end
-        end
     end 
-  #rerender this as a case statement 
+    #rerender this as a case statement 
 #---------------------------------------------------------------------------------
     def goodbye 
         puts "Thank You for using the Groupon finder!"
