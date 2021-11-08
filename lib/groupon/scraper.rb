@@ -1,7 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-require 'byebug'
 class Groupon::Scraper 
     def self.scrape_offers 
         local_url = "https://www.groupon.com/local"
@@ -10,7 +6,7 @@ class Groupon::Scraper
         array_of_offers = doc.css(".deal-card").css('a')
         array_of_offers.each do |offer_list|
             attributes = {
-                 title: offer_list.css('.grpn-dc-title')[0].children.text,
+                 title: offer_list.css('.grpn-dc-title').text,
                  url: offer_list.attribute('href').value,
                  location: offer_list.css('.grpn-dc-loci').text,
                  price: offer_list.css('.wh-dc-price-discount').text,
