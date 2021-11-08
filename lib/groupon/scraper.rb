@@ -4,7 +4,9 @@ require 'pry'
 require 'byebug'
 class Groupon::Scraper 
     def self.scrape_offers 
-        doc = Nokogiri::HTML(open("https://www.groupon.com/local"))
+        local_url = "https://www.groupon.com/local"
+        html = open(local_url)
+        doc = Nokogiri::HTML(open(html))
         array_of_offers = doc.css(".deal-card").css('a')
         array_of_offers.each do |offer_list|
             attributes = {
@@ -23,7 +25,7 @@ class Groupon::Scraper
         offer_page = Nokogiri::HTML(open(offer.url))
         reviews = offer_page.css('.tip-item')
             reviews.each do |r| 
-                review = Template::Detail.new  #instantiate a new review
+                review = Groupon::Detail.new  #instantiate a new review
                 review.offer = offer #associate that review with this offer
                 review.text = r.css(".tip-text").text   #set any review attributes
                 review.name = r.css(".tips-reviewer-name").text   #set any review attributes

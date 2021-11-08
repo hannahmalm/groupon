@@ -10,6 +10,7 @@ class Groupon::Offer
     #create an empty array that holds all of the details within the offer
     def initialize(attributes) #pass in attributes from the hash
         @title = attributes[:title]
+        @url = attributes[:url]
         @location = attributes[:location]
         @price = attributes[:price]
         @rating = attributes[:rating]
@@ -19,7 +20,8 @@ class Groupon::Offer
     end 
 
     def save 
-        @@all << self 
+        @@all << self
+    end 
 
     def self.all 
         @@all 

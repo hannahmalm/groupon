@@ -10,6 +10,7 @@ class Groupon::CLI
         Groupon::Scraper.scrape_offers
         list_offers
         get_user_offer_input
+        #get_review_info
         #display_offer_details
        # new_offer
     end 
@@ -52,7 +53,7 @@ class Groupon::CLI
   
 #--------------------------------------------------------------------------------
     def display_offer_detail(offer)
-        puts "Offer Details for: #{offer.title}"
+        puts "Offer Details for: #{offer.title} \n"
         puts "Offer Location: #{offer.location}"
         puts "Offer Price: #{offer.price}"
         puts "Offer Rating: #{offer.rating}"
@@ -62,16 +63,15 @@ class Groupon::CLI
 #-------------------------------------------------------------------------------------
     def get_user_additional_input(offer)
         puts "Would you like to see the reviews for this offer?"
-        input = "nil"
-        until input == "Yes" || input == "No"
-            puts "Please type Yes or No"
-            input = gets.strip 
-            if input == "Yes"
+        puts "Please type Yes or No"
+        input = gets.strip 
+            if input == "Yes" || input == "Y"
                 get_review_info(offer)
-            else 
-               new_offer
+            elsif input == "No" || input ==  "N"
+                new_offer
+            else
+                puts "Please type Yes or No"
             end 
-        end 
     end 
 #---------------------------------------------------------------------------------
 def get_review_info(offer)
@@ -79,13 +79,14 @@ def get_review_info(offer)
     offer.details.each do |review| #iterate through each offer review 
         puts "#{review.name} says: #{review.text}.\n\n"
     end 
+
+    new_offer
 end 
 #---------------------------------------------------------------------------------
     def offer_loop 
-        get_offers
         list_offers
         get_user_offer_input
-        new_offer
+        #new_offer
     end 
 #---------------------------------------------------------------------------------
  def new_offer #DONE
