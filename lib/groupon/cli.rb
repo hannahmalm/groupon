@@ -16,9 +16,9 @@ class Groupon::CLI
         puts "Choose a offer you would like more details about"
          #Could also write this as Groupon::Offer.all.each.with(index) and delete out get offers method
         #@offers.each.with_index(1) do |offer, index| 
-        Groupon::Offer.all.each.with_index(1) do |offer, index|
+        Groupon::Offer.all.each.with_index(1) { |offer, index|
             puts "#{index} - #{offer.title}"
-        end
+        }
         #list the offer TITLES
         #use each with index to iterate over and add an index number
         #the index starts with 0 so add 1 to print out the index starting at 1 
@@ -29,6 +29,10 @@ class Groupon::CLI
         print "\nPlease choose a number associated with an offer you would like to more information about:\n
         "
         input = gets.strip.to_i
+        valid_input(input)
+    end 
+#--------------------------------------------------------------------------------
+    def valid_input(input)
         max_value = Groupon::Offer.all.length 
         if input.between?(1, max_value)
             offer = Groupon::Offer.all[input-1]
@@ -48,8 +52,7 @@ class Groupon::CLI
     end 
 #-------------------------------------------------------------------------------------
     def get_user_additional_input(offer)
-        puts "Would you like to see the reviews for this offer?"
-        puts "Please type Yes or No"
+        puts "Would you like to see the reviews for this offer? Please type Yes or No"
         input = gets.strip 
             if input == "Yes" || input == "Y" || input == "yes"
                 get_review_info(offer)
@@ -63,9 +66,9 @@ class Groupon::CLI
 #---------------------------------------------------------------------------------
     def get_review_info(offer)
         Groupon::Scraper.scrape_details(offer)
-        offer.details.each do |review| #iterate through each offer review 
+        offer.details.each { |review| #iterate through each offer review 
             puts "#{review.name} says: #{review.text}.\n\n"
-        end
+        }
         new_offer
     end 
 #---------------------------------------------------------------------------------
