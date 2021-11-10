@@ -45,10 +45,8 @@ class Groupon::CLI
     def get_user_additional_input(offer)
         puts "Would you like to see the reviews for this offer? Please type Yes or No"
         input = gets.strip 
-
-        #Create an array with all the different possibilites and include them
-        
-            if ["Yes", "Y","yes","y"].include?(input)
+            #Create an array with all the different possibilites and include them
+            if ["Yes","Y","yes","y"].include?(input)
                 get_review_info(offer)
             elsif ["No", "N","no","n"].include?(input)
                 new_offer
@@ -81,7 +79,7 @@ class Groupon::CLI
             else 
             puts "Please enter Yes or No"
                 input_new = gets.chomp.to_s 
-                if input_new == "Yes"
+                if input_new == "Yes" || "Y" || "yes" || "y"
                     offer_loop
                 else 
                     goodbye
