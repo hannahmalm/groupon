@@ -5,8 +5,4 @@ class Groupon::Detail
     #attr_accessor is the same as attr_reader and attr_writer
     attr_accessor :offer, :name, :text
    
-    #initialize the methods above
-    def initialize 
-    end 
-
 end 
