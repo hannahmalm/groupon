@@ -1,10 +1,4 @@
 class Groupon::CLI 
-    #Use this namespacing because a user might have another file called CLI so this prevents confusion
-    #call the cli file from bin/chicago using Groupon::CLI.new.call
-    #Use namespacing on this Module because the CLI might be named chicago elsewhere
-    #.new is used to trigger the initialize method
-    #if you call self in a class method it will return the class - self in the intialize method is an instance of the class
-
     def call
         puts "Welcome to the Groupon finder!"
         Groupon::Scraper.scrape_offers
@@ -16,13 +10,10 @@ class Groupon::CLI
         puts "Choose a offer you would like more details about"
          #Could also write this as Groupon::Offer.all.each.with(index) and delete out get offers method
         #@offers.each.with_index(1) do |offer, index| 
+        #get all of the offers from the Offer class
         Groupon::Offer.all.each.with_index(1) { |offer, index|
             puts "#{index} - #{offer.title}"
         }
-        #list the offer TITLES
-        #use each with index to iterate over and add an index number
-        #the index starts with 0 so add 1 to print out the index starting at 1 
-        #Notice the order of iteration and puts - it needs to be in this order or it wont work 
     end 
 #---------------------------------------------------------------------------------
      def get_user_offer_input #DONE
@@ -33,9 +24,9 @@ class Groupon::CLI
     end 
 #--------------------------------------------------------------------------------
     def valid_input(input)
-        max_value = Groupon::Offer.all.length 
+        max_value = Groupon::Offer.all.length #finding the length of the Offer array
         if input.between?(1, max_value)
-            offer = Groupon::Offer.all[input-1]
+            offer = Groupon::Offer.all[input-1] #subtracting 1 because the Offer array starts at 0 
             display_offer_detail(offer)
         else 
             puts "Please enter a valid input"
@@ -54,9 +45,12 @@ class Groupon::CLI
     def get_user_additional_input(offer)
         puts "Would you like to see the reviews for this offer? Please type Yes or No"
         input = gets.strip 
-            if input == "Yes" || input == "Y" || input == "yes"
+
+        #Create an array with all the different possibilites and include them
+        
+            if ["Yes", "Y","yes","y"].include?(input)
                 get_review_info(offer)
-            elsif input == "No" || input ==  "N" || input == "no"
+            elsif ["No", "N","no","n"].include?(input)
                 new_offer
             else
                 puts "Please type Yes or No"
@@ -80,9 +74,9 @@ class Groupon::CLI
     def new_offer #DONE
             puts "Do you want to see another offer?"
             input = gets.chomp.to_s 
-            if input == "Y" || input == "Yes" || input == "y" || input == "yes"
+            if ["Yes", "Y","yes","y"].include?(input)
                 offer_loop
-            elsif input == "N" || input == "No" || input == "n" || input == "no"
+            elsif ["No", "N","no","n"].include?(input)
                 goodbye 
             else 
             puts "Please enter Yes or No"
